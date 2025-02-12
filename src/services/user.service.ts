@@ -10,7 +10,7 @@ export class UserService {
 
   async registerUser(user: User) {
     if (!user.email) {
-      throw new Error("El correo electrónico es obligatorios");
+      throw new Error("El correo electrónico es obligatorio");
     }
 
     try {
