@@ -22,6 +22,7 @@ export class UserRepository {
       const userRecord = await firebaseAdmin.auth().getUserByEmail(email);
       return {
         email: userRecord.email || "",
+        uid: userRecord.uid || ""
       };
     } catch (error) {
       console.error(
