@@ -9,8 +9,8 @@ export class UserService {
   }
 
   async registerUser(user: User) {
-    if (!user.email || !user.password) {
-      throw new Error("El correo electrónico y la contraseña son obligatorios");
+    if (!user.email) {
+      throw new Error("El correo electrónico es obligatorio");
     }
 
     try {

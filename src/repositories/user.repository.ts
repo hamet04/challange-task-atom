@@ -5,8 +5,7 @@ export class UserRepository {
   async registerUser(user: User): Promise<{ uid: string }> {
     try {
       const userRecord = await firebaseAdmin.auth().createUser({
-        email: user.email,
-        password: user.password,
+        email: user.email
       });
 
       return { uid: userRecord.uid };

@@ -7,11 +7,10 @@ const router = Router();
 const taskService = new TaskService();
 const taskController = new TaskController(taskService);
 
-router.get("/getAll", authMiddleware, taskController.getAllTasks);
-router.post("/create", authMiddleware, taskController.createTask);
-router.put("/update/:taskId", authMiddleware, taskController.updateTask);
-router.delete("/delete/:taskId", authMiddleware, taskController.deleteTask);
-
-router.post("/complete", authMiddleware, taskController.completeTasks);
+router.get("/getAll", taskController.getAllTasks);
+router.post("/create", taskController.createTask);
+router.put("/update/:taskId", taskController.updateTask);
+router.delete("/delete/:taskId", taskController.deleteTask);
+router.post("/complete", taskController.completeTasks);
 
 export default router;
