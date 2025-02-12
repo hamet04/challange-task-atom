@@ -14,7 +14,6 @@ export const authMiddleware = async (
   }
 
   const token = authHeader.split(" ")[1];
-
   try {
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
     req.body.uid = decodedToken.uid;

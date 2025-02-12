@@ -12,7 +12,6 @@ export class TaskController {
     try {
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 10;
-      //const term = req.query.term as string | undefined;
       const uid = req.body.uid;
 
       const result = await this.taskService.getTasks(page, limit, uid);

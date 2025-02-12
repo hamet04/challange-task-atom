@@ -4,11 +4,9 @@ import firebaseAdmin from "firebase-admin";
 export class UserRepository {
   async registerUser(user: User): Promise<{ uid: string }> {
     try {
-      const userRecord = await firebaseAdmin.auth().createUser({
-        email: user.email,
-        password: user.password,
-      });
-
+      const userData: User = { email: user.email };
+      if (user.password) userData.password = user.password;
+      const userRecord = await firebaseAdmin.auth().createUser(userData);        
       return { uid: userRecord.uid };
     } catch (error) {
       console.error(
