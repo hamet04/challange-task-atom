@@ -12,26 +12,19 @@ export class TaskController {
     try {
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 10;
-      const uid = req.body.uid;
+      const uid = req.body.uid as string;
 
       const result = await this.taskService.getTasks(page, limit, uid);
       res.status(200).json(result);
     } catch (error) {
-      console.error(
-        "Error en TaskController al obtener las tareas:",
-        (error as Error).message
-      );
-      res.status(500).json({
-        message: "Error al obtener las tareas",
-        error: (error as Error).message,
-      });
+      console.error( "Error en getAllTasks:", (error as Error).message );
+      res.status(500).json({ message: "Error al obtener las tareas" });
     }
   };
 
   public createTask = async (req: Request, res: Response): Promise<void> => {
     try {
-      const { Titulo, Descripcion, Estado } = req.body;
-      const uid = req.body.uid;
+      const { Titulo, Descripcion, Estado, uid } = req.body;
 
       await this.taskService.createTask({
         Titulo,
@@ -41,10 +34,7 @@ export class TaskController {
       });
       res.status(201).json({ message: "Tarea creada exitosamente" });
     } catch (error) {
-      console.error(
-        "Error en TaskController al crear la tarea:",
-        (error as Error).message
-      );
+      console.error( "Error en createTask:", (error as Error).message );
       res.status(400).json({ message: (error as Error).message });
     }
   };
@@ -59,16 +49,10 @@ export class TaskController {
         return;
       }
 
-      await this.taskService.updateTask(taskId, {
-        Titulo,
-        Descripcion,
-      });
+      await this.taskService.updateTask(taskId, { Titulo, Descripcion });
       res.status(200).json({ message: "Tarea actualizada exitosamente" });
     } catch (error) {
-      console.error(
-        "Error en TaskController al actualizar la tarea:",
-        (error as Error).message
-      );
+      console.error( "Error en updateTask:", (error as Error).message );
       res.status(400).json({ message: (error as Error).message });
     }
   };
@@ -85,10 +69,7 @@ export class TaskController {
       await this.taskService.deleteTask(taskId);
       res.status(200).json({ message: "Tarea eliminada exitosamente" });
     } catch (error) {
-      console.error(
-        "Error en TaskController al eliminar la tarea:",
-        (error as Error).message
-      );
+      console.error( "Error en deleteTask", (error as Error).message );
       res.status(400).json({ message: (error as Error).message });
     }
   };
@@ -98,20 +79,13 @@ export class TaskController {
       const { taskIds } = req.body;
 
       if (!Array.isArray(taskIds) || taskIds.length === 0) {
-        res
-          .status(400)
-          .json({ message: "Se requiere una lista de IDs de tareas" });
+        res.status(400).json({ message: "Se requiere una lista de IDs de tareas" });
       }
 
       await this.taskService.completeTasks(taskIds);
-      res
-        .status(200)
-        .json({ message: "Tareas marcadas como completadas exitosamente" });
+      res.status(200).json({ message: "Tareas marcadas como completadas exitosamente" });
     } catch (error) {
-      console.error(
-        "Error en TaskController al marcar tareas como completadas:",
-        (error as Error).message
-      );
+      console.error( "Error en completeTasks:", (error as Error).message );
       res.status(400).json({ message: (error as Error).message });
     }
   };

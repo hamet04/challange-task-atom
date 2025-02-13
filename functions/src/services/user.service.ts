@@ -16,10 +16,7 @@ export class UserService {
     try {
       return await this.userRepository.registerUser(user);
     } catch (error) {
-      console.error(
-        "Error en UserService al registrar usuario:",
-        (error as Error).message
-      );
+      console.error( "Error en UserService (registerUser):", (error as Error).message );
       throw new Error("Error al registrar usuario");
     }
   }
@@ -32,10 +29,7 @@ export class UserService {
       }
       return user;
     } catch (error) {
-      console.error(
-        "Error en UserService al buscar usuario:",
-        (error as Error).message
-      );
+      console.error( "Error en UserService al buscar usuario:", (error as Error).message );
       throw new Error("Error al buscar usuario");
     }
   }

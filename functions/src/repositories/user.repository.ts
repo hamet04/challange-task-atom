@@ -9,10 +9,7 @@ export class UserRepository {
       const userRecord = await firebaseAdmin.auth().createUser(userData);        
       return { uid: userRecord.uid };
     } catch (error) {
-      console.error(
-        "Error en UserRepository al registrar usuario:",
-        (error as Error).message
-      );
+      console.error( "Error en UserRepository (registerUser):", (error as Error).message );
       throw new Error("Error al registrar usuario");
     }
   }
@@ -25,10 +22,7 @@ export class UserRepository {
         uid: userRecord.uid || ""
       };
     } catch (error) {
-      console.error(
-        "Error en UserRepository al buscar usuario:",
-        (error as Error).message
-      );
+      console.error( "Error en UserRepository (findUserByEmail):", (error as Error).message );
       throw new Error("Error al buscar usuario");
     }
   }

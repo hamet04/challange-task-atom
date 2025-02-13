@@ -37,10 +37,7 @@ export class TaskRepository {
 
       return { tasks, totalRecords };
     } catch (error) {
-      console.error(
-        "Error al obtener las tareas en TaskRepository:",
-        (error as Error).message
-      );
+      console.error( "Error en TaskRepository (getPaginatedTasks):", (error as Error).message );
       throw new Error("Error al obtener las tareas");
     }
   }
@@ -52,10 +49,7 @@ export class TaskRepository {
         TareaCreada: firebaseAdmin.firestore.FieldValue.serverTimestamp(),
       });
     } catch (error) {
-      console.error(
-        "Error al crear la tarea en TaskRepository:",
-        (error as Error).message
-      );
+      console.error( "Error en TaskRepository (createTask):", (error as Error).message );
       throw new Error("Error al crear la tarea");
     }
   }
@@ -71,10 +65,7 @@ export class TaskRepository {
 
       await taskRef.update(taskData);
     } catch (error) {
-      console.error(
-        "Error al actualizar la tarea en TaskRepository:",
-        (error as Error).message
-      );
+      console.error( "Error en TaskRepository (updateTask):", (error as Error).message );
       throw new Error("Error al actualizar la tarea");
     }
   }
@@ -90,10 +81,7 @@ export class TaskRepository {
 
       await taskRef.delete();
     } catch (error) {
-      console.error(
-        "Error al eliminar la tarea en TaskRepository:",
-        (error as Error).message
-      );
+      console.error( "Error en TaskRepository (deleteTask):", (error as Error).message );
       throw new Error("Error al eliminar la tarea");
     }
   }
@@ -119,7 +107,7 @@ export class TaskRepository {
     try {
       await batch.commit();
     } catch (error) {
-      console.error("Error al marcar tareas como completadas en TaskRepository:", (error as Error).message);
+      console.error("Error en TaskRepository(completeTasks) :", (error as Error).message);
       throw new Error("Error al marcar tareas como completadas");
     }
   }

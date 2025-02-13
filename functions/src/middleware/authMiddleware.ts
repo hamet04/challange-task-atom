@@ -18,6 +18,7 @@ export const authMiddleware = async (
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
     req.body.uid = decodedToken.uid;
     next();
+    return;
   } catch (error) {
     console.error("Error al verificar el token:", (error as Error).message);
     return res

@@ -17,25 +17,19 @@ export class UserController {
       });
       res.status(201).json({ uid });
     } catch (error) {
-      console.error(
-        "Error en UserController al registrar usuario:",
-        (error as Error).message
-      );
+      console.error( "Error en UserController (register):", (error as Error).message );
       res.status(400).json({ message: (error as Error).message });
     }
   };
 
-  public findUserByEmail = async (
-    req: Request,
-    res: Response
-  ): Promise<void> => {
+  public findUserByEmail = async ( req: Request, res: Response ): Promise<void> => {
     try {
       const { email } = req.params;
       const user = await this.userService.findUserByEmail(email);
       res.status(200).json(user);
     } catch (error) {
       console.error(
-        "Error en UserController al buscar usuario:",
+        "Error en UserController (findUserByEmail):",
         (error as Error).message
       );
       res.status(404).json({ message: (error as Error).message });

@@ -23,10 +23,7 @@ export class TaskService {
         data: tasks,
       };
     } catch (error) {
-      console.error(
-        "Error en TaskService al obtener las tareas:",
-        (error as Error).message
-      );
+      console.error( "Error en getTasks:", (error as Error).message );
       throw new Error("Error al obtener las tareas desde el servicio");
     }
   }
@@ -49,10 +46,7 @@ export class TaskService {
     try {
       await this.taskRepository.createTask(newTask);
     } catch (error) {
-      console.error(
-        "Error en TaskService al crear la tarea:",
-        (error as Error).message
-      );
+      console.error( "Error en createTask:", (error as Error).message );
       throw new Error("Error al crear la tarea");
     }
   }
@@ -69,10 +63,7 @@ export class TaskService {
       };
       await this.taskRepository.updateTask(taskId, updateTask);
     } catch (error) {
-      console.error(
-        "Error en TaskService al actualizar la tarea:",
-        (error as Error).message
-      );
+      console.error( "Error en updateTask:", (error as Error).message );
       throw new Error("Error al actualizar la tarea");
     }
   }
@@ -81,10 +72,7 @@ export class TaskService {
     try {
       await this.taskRepository.deleteTask(taskId);
     } catch (error) {
-      console.error(
-        "Error en TaskService al eliminar la tarea:",
-        (error as Error).message
-      );
+      console.error( "Error en deleteTask:", (error as Error).message );
       throw new Error("Error al eliminar la tarea");
     }
   }
@@ -93,10 +81,7 @@ export class TaskService {
     try {
       await this.taskRepository.completeTasks(taskIds);
     } catch (error) {
-      console.error(
-        "Error en TaskService al marcar tareas como completadas:",
-        (error as Error).message
-      );
+      console.error( "Error en completeTasks:", (error as Error).message );
       throw new Error("Error al marcar tareas como completadas");
     }
   }
